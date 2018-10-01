@@ -66,13 +66,13 @@ def HM_stop_HMlistener():
 #
     proxy = xmlrpclib.ServerProxy('http://' + HM_CCU2AdressPort)
     proxy = xmlrpclib.ServerProxy('http://' + HM_CCU2Adress + ':2001')
-    print proxy.init(HM_ListenerAdress + ':' + HM_ListenerPort, '')
+    print (proxy.init(HM_ListenerAdress + ':' + HM_ListenerPort, ''))
     print ("Stop HM Listener Request send to CCU: %s"   % str(HM_CCU2AdressPort))
     time.sleep( 1 )
 
     proxy = xmlrpclib.ServerProxy('http://' + HM_CCU2AdressPort)
     proxy = xmlrpclib.ServerProxy('http://' + HM_CCU2Adress + ':2010')
-    print proxy.init(HM_ListenerAdress + ':' + HM_ListenerPort, '')
+    print (proxy.init(HM_ListenerAdress + ':' + HM_ListenerPort, ''))
     print ("Stop HM Listener Request send to CCU: %s"   % str(HM_CCU2AdressPort))
     time.sleep( 1 )
     
@@ -81,7 +81,7 @@ def HM_stop_HMlistener():
 #
     s = xmlrpclib.ServerProxy('http://' + HM_ListenerAdress  + ":" + HM_ListenerPort)
     print ("Stop HM Listener Request send to HM Listener: %s"   % str(HM_ListenerAdress  + ":" + HM_ListenerPort))
-    print s.stop_listening("123456","stop listening now")
+    print (s.stop_listening("123456","stop listening now"))
     print ("Stop HM Listener Request send to HM Listener: %s"   % str(HM_ListenerAdress  + ":" + HM_ListenerPort))
 
     return  
@@ -91,8 +91,8 @@ def HM_stop_HMlistener():
 if __name__ == '__main__':
 #
     #parameters  = sys.argv[1:]
-    #print "sys.argv : " + str(sys.argv[1:]) + "\n"
-    #print "parameter: " + str(parameters) + "\n"
+    #print ("sys.argv : " + str(sys.argv[1:]) + "\n")
+    #print ("parameter: " + str(parameters) + "\n")
     HM_stop_HMlistener()
 #
 ### END #######################################################################

@@ -107,7 +107,7 @@ def db_ops(args):
         db.rollback()
         db.close()
         raise e
-#	
+#       
     TimeStamp = datetime.now()
     ListenerId = str(args[1])
     DevID = str(args[2])
@@ -138,7 +138,7 @@ def write_data_into_table(TimeStamp, ListenerId, DevID, DevParameter, DevParamet
     cursor.execute('''insert into HM_comlog_data (comlog_TimeStamp, comlog_ListenerId, comlog_DevID, comlog_DevParameter, comlog_DevParameterValue) 
                       values (?, ?, ?, ?, ?)''', 
                       ( TimeStamp, ListenerId, DevID, DevParameter, DevParameterValue )
-		  )
+                  )
     return
 #
 #------------------------------------------------------------------------------ 
@@ -153,14 +153,14 @@ def create_table_document_data():
 #
     cursor.execute('''CREATE TABLE IF NOT EXISTS
                       HM_comlog_data
-		        (
- 		          comlog_id       		INTEGER PRIMARY KEY AUTOINCREMENT,
-                          comlog_TimeStamp		DATETIME,
-			  comlog_ListenerId		VARCHAR(50),
-			  comlog_DevID			VARCHAR(250),
-			  comlog_DevParameter		VARCHAR(250),
-			  comlog_DevParameterValue	VARCHAR(250)
-			)
+                        (
+                          comlog_id                     INTEGER PRIMARY KEY AUTOINCREMENT,
+                          comlog_TimeStamp              DATETIME,
+                          comlog_ListenerId             VARCHAR(50),
+                          comlog_DevID                  VARCHAR(250),
+                          comlog_DevParameter           VARCHAR(250),
+                          comlog_DevParameterValue      VARCHAR(250)
+                        )
     ''')
     return
 #
@@ -185,13 +185,13 @@ def initiate_hm_listener():
 #
     proxy = xmlrpclib.ServerProxy('http://' + HM_CCU2Adress + ':2001')
     time.sleep( 1 )
-    print proxy.init(HM_ListenerAdress + ':' + HM_ListenerPort, HM_Parameter)
+    print (proxy.init(HM_ListenerAdress + ':' + HM_ListenerPort, HM_Parameter))
     print ("HM Listener Request send to CCU: %s"   % str(HM_CCU2Adress + ':2001'))
     time.sleep( 2 )
     
     proxy = xmlrpclib.ServerProxy('http://' + HM_CCU2Adress + ':2010')
     time.sleep( 1 )
-    print proxy.init(HM_ListenerAdress + ':' + HM_ListenerPort, HM_Parameter)
+    print (proxy.init(HM_ListenerAdress + ':' + HM_ListenerPort, HM_Parameter))
     print ("HM Listener Request send to CCU: %s"   % str(HM_CCU2Adress + ':2010'))
     time.sleep( 3 )
     
@@ -211,13 +211,13 @@ class AsyncXMLRPCServer(SocketServer.ThreadingMixIn,SimpleXMLRPCServer): pass
 class mm_HM_XMLRPC_Object:
     def stop_listening(*args):
         global self_shutdown
-	#print "---"
-	#db_ops(args)
-	string = "stop_listening: " + str(args[1]) + " " + str(args[2]) #+ " " + str(args[3]) + " "  + str(args[4])
-	log_ops(string)
-	server.shutdown()
-	server.server_close()
-	#return '<?xml version="1.0"?>\n<methodResponse>\n   <params>\n      <param>\n         <value>\n            <array>\n               <data>\n               </data>\n            </array>\n         </value>\n      </param>\n   </params>\n</methodResponse>'
+        #print "---"
+        #db_ops(args)
+        string = "stop_listening: " + str(args[1]) + " " + str(args[2]) #+ " " + str(args[3]) + " "  + str(args[4])
+        log_ops(string)
+        server.shutdown()
+        server.server_close()
+        #return '<?xml version="1.0"?>\n<methodResponse>\n   <params>\n      <param>\n         <value>\n            <array>\n               <data>\n               </data>\n            </array>\n         </value>\n      </param>\n   </params>\n</methodResponse>'
         ret_array = []
         return ret_array
 
@@ -225,11 +225,11 @@ class mm_HM_XMLRPC_Object:
         #print "---event---"
         #for arg in args:
         #    print arg
-	#print "---"
-	db_ops(args)
-	string = "event: " + str(args[1]) + " " + str(args[2]) + " " + str(args[3]) + " "  + str(args[4])
-	log_ops(string)
-	#return '<?xml version="1.0"?>\n<methodResponse>\n   <params>\n      <param>\n         <value>\n            <array>\n               <data>\n               </data>\n            </array>\n         </value>\n      </param>\n   </params>\n</methodResponse>'
+        #print "---"
+        db_ops(args)
+        string = "event: " + str(args[1]) + " " + str(args[2]) + " " + str(args[3]) + " "  + str(args[4])
+        log_ops(string)
+        #return '<?xml version="1.0"?>\n<methodResponse>\n   <params>\n      <param>\n         <value>\n            <array>\n               <data>\n               </data>\n            </array>\n         </value>\n      </param>\n   </params>\n</methodResponse>'
         ret_array = []
         return ret_array
 
@@ -239,10 +239,10 @@ class mm_HM_XMLRPC_Object:
         for arg in args:
             string = string + " " + str(arg)
 
-	log_ops(string)
-	ret_array = []
-	
-	#a =  ['<?xml version="1.0"?>\n<methodResponse>\n   <params>\n      <param>\n         <value>\n            <array>\n               <data>\n               </data>\n            </array>\n         </value>\n      </param>\n   </params>\n</methodResponse>']
+        log_ops(string)
+        ret_array = []
+        
+        #a =  ['<?xml version="1.0"?>\n<methodResponse>\n   <params>\n      <param>\n         <value>\n            <array>\n               <data>\n               </data>\n            </array>\n         </value>\n      </param>\n   </params>\n</methodResponse>']
         return ret_array
               
     def newDevices(*args):
@@ -251,8 +251,8 @@ class mm_HM_XMLRPC_Object:
         for arg in args:
             string = string + " " + str(arg)
 
-	log_ops(string)
-	#return '<?xml version="1.0"?>\n<methodResponse>\n   <params>\n      <param>\n         <value>\n            <array>\n               <data>\n               </data>\n            </array>\n         </value>\n      </param>\n   </params>\n</methodResponse>'
+        log_ops(string)
+        #return '<?xml version="1.0"?>\n<methodResponse>\n   <params>\n      <param>\n         <value>\n            <array>\n               <data>\n               </data>\n            </array>\n         </value>\n      </param>\n   </params>\n</methodResponse>'
         ret_array = []
         return ret_array
 
@@ -262,8 +262,8 @@ class mm_HM_XMLRPC_Object:
         for arg in args:
             string = string + " " + str(arg)
 
-	log_ops(string)
-	#return '<?xml version="1.0"?>\n<methodResponse>\n   <params>\n      <param>\n         <value>\n            <array>\n               <data>\n               </data>\n            </array>\n         </value>\n      </param>\n   </params>\n</methodResponse>'
+        log_ops(string)
+        #return '<?xml version="1.0"?>\n<methodResponse>\n   <params>\n      <param>\n         <value>\n            <array>\n               <data>\n               </data>\n            </array>\n         </value>\n      </param>\n   </params>\n</methodResponse>'
         ret_array = []
         return ret_array
 # 
@@ -299,6 +299,6 @@ else:
     try:
        server.serve_forever()
     except KeyboardInterrupt:
-       print 'KeyboardInterrupt Exit - don\'t forget to stop sending the events to the gateway! '
+       print ('KeyboardInterrupt Exit - don\'t forget to stop sending the events to the gateway! ')
 #
 ### END #######################################################################

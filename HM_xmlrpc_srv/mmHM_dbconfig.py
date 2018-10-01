@@ -1,5 +1,10 @@
-from ConfigParser import ConfigParser
-#import ConfigParser 
+import sys
+import getopt
+import io
+if sys.version_info < (3,0) :
+   from ConfigParser import ConfigParser	# 2.7
+else:
+   from configparser import ConfigParser	# > 3.0
  
 def read_db_config(filename='mm_HM.config', section='mmHM_mysql'):
     """ Read database configuration file and return a dictionary object
